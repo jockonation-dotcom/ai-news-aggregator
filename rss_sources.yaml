@@ -1,0 +1,36 @@
+sources:
+  01_建築AI:
+    ITmedia_AI: https://rss.itmedia.co.jp/rss/2.0/news_aitechnology.xml
+    ArchDaily: https://www.archdaily.com/?feed=rss
+    Construction_Dive: https://www.constructiondive.com/news/feed
+    Trimble_Blog: https://blog.trimble.com/feed
+    Bentley: https://www.bentley.com/en/news/feed.xml
+  
+  02_実務AI:
+    Publickey: https://www.publickey1.jp/rss.xml
+    Impress: https://impress.techgallery.jp/feed
+    ITmedia_General: https://rss.itmedia.co.jp/rss/2.0/aitechnology.xml
+    CodeZine: https://codezine.jp/feed
+    ZDNet_Japan: https://japan.zdnet.com/feed
+  
+  03_海外AI本流:
+    OpenAI: https://openai.com/blog/feed.xml
+    Anthropic: https://www.anthropic.com/feed.xml
+    DeepMind: https://deepmind.google/feed/
+    Nvidia_Blog: https://blogs.nvidia.com/feed/
+    Meta_AI: https://ai.facebook.com/feed/
+    AWS_ML: https://aws.amazon.com/blogs/machine-learning/feed/
+  
+  04_アートAI:
+    HuggingFace: https://huggingface.co/feed.xml
+    Runway: https://runway.com/blog/feed
+    Stability: https://stability.ai/blog/feed
+    Adobe_Firefly: https://blog.adobe.com/en/feed.xml
+    Suno: https://www.suno.ai/blog/feed
+    ElevenLabs: https://elevenlabs.io/blog/feed
+  
+  05_偶発ネタ:
+    ProductHunt: https://www.producthunt.com/@ai/feed
+    arXiv_AI: https://arxiv.org/rss/cs.AI
+    MIT_TechReview: https://www.technologyreview.com/feed.xml
+    Wired_Tech: https://www.wired.com/feed/rss
