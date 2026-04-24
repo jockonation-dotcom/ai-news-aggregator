@@ -64,15 +64,27 @@ def translate_to_japanese(text):
         return text
 
 def classify_category(title, summary, hint):
-    """簡易分類：ヒント + キーワードマッチング"""
+    """優先：カテゴリヒント > キーワードマッチング"""
+    
+    # hint をそのまま使う（最優先）
+    if '01_' in hint:
+        return '01_建築AI'
+    elif '02_' in hint:
+        return '02_実務AI'
+    elif '03_' in hint:
+        return '03_海外AI本流'
+    elif '04_' in hint:
+        return '04_アートAI'
+    elif '05_' in hint:
+        return '05_偶発ネタ'
+    
+    # フォールバック：キーワードマッチング
     text = (title + " " + summary).lower()
     
     if '建築' in text or '建設' in text:
         return '01_建築AI'
     elif '実務' in text or 'ビジネス' in text or 'マーケティング' in text:
         return '02_実務AI'
-    elif hint in ['03_海外AI本流', '海外AI本流']:
-        return '03_海外AI本流'
     elif 'アート' in text or 'デザイン' in text or 'クリエイティブ' in text:
         return '04_アートAI'
     else:
