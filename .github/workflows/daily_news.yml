@@ -8,6 +8,8 @@ on:
 jobs:
   aggregate:
     runs-on: ubuntu-latest
+    permissions:
+      contents: write
     
     steps:
       - uses: actions/checkout@v4
@@ -24,10 +26,20 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python news_aggregator.py
       
+      - name: Check if HTML exists
+        run: |
+          if [ -f docs/news_dashboard.html ]; then
+            echo "✓ HTML file created successfully"
+            ls -lh docs/news_dashboard.html
+          else
+            echo "✗ HTML file NOT created"
+            exit 1
+          fi
+      
       - name: Commit and push
         run: |
-          git config --global user.name "News Bot"
-          git config --global user.email "bot@example.com"
-          git add docs/news_dashboard.html || true
-          git commit -m "chore: update dashboard" || true
-          git push || true
+          git config --local user.email "action@github.com"
+          git config --local user.name "GitHub Action"
+          git add docs/news_dashboard.html
+          git commit -m "chore: update dashboard $(date '+%Y-%m-%d %H:%M:%S')"
+          git push origin main
