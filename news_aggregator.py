@@ -2,10 +2,10 @@
 import feedparser
 import yaml
 import json
-from anthropic import Anthropic
+import os
 from datetime import datetime
 from langdetect import detect
-import os
+from google.cloud import translate_v2
 
 YAML_FILE = "rss_sources.yaml"
 OUTPUT_FILE = "docs/news_dashboard.html"
@@ -40,101 +40,64 @@ def detect_language(text):
     except:
         return 'unknown'
 
-def process_articles_batch(articles):
-    """バッチ処理：すべての記事を 1 回の API コールで処理"""
-    client = Anthropic()
+def translate_to_japanese(text):
+    """Google Translate API を使用して日本語に翻訳"""
+    try:
+        api_key = os.environ.get('GOOGLE_TRANSLATE_API_KEY')
+        client = translate_v2.Client(api_key=api_key)
+        result = client.translate_text(text, target_language='ja')
+        return result['translatedText']
+    except Exception as e:
+        print(f"翻訳エラー: {e}")
+        return text
+
+def classify_category(title, summary, hint):
+    """簡易分類：ヒント + キーワードマッチング"""
+    text = (title + " " + summary).lower()
     
-    print(f"🔄 翻訳・分類処理中（バッチ）...")
+    if '建築' in text or '建設' in text:
+        return '01_建築AI'
+    elif '実務' in text or 'ビジネス' in text or 'マーケティング' in text:
+        return '02_実務AI'
+    elif hint in ['03_海外AI本流', '海外AI本流']:
+        return '03_海外AI本流'
+    elif 'アート' in text or 'デザイン' in text or 'クリエイティブ' in text:
+        return '04_アートAI'
+    else:
+        return '05_偶発ネタ'
+
+def process_articles(articles):
+    """翻訳と分類を実行"""
+    print(f"🔄 翻訳・分類処理中（Google Translate API）...\n")
     
-    # 英語記事のみをフィルタ
-    articles_to_translate = []
     processed = []
     
-    for article in articles:
+    for i, article in enumerate(articles):
         lang = detect_language(article['title'] + " " + article['summary'])
         article['original_language'] = lang
+        
+        print(f"[{i+1}/{len(articles)}] {article['source']}: {lang}", end='')
         
         if lang == 'ja':
             article['title_ja'] = article['title']
             article['summary_ja'] = article['summary']
             article['translated'] = False
-            article['category'] = article['category_hint']
-            article['relevance'] = 0.8
-            processed.append(article)
-            print(f"✓ {article['source']}: ja（日本語）")
+            print(" ✓")
         else:
-            articles_to_translate.append(article)
-            print(f"→ {article['source']}: {lang}（翻訳待機中）")
-    
-    # 英語記事をバッチで翻訳
-    if articles_to_translate:
-        articles_json = json.dumps(
-            [{'index': i, 'title': a['title'], 'summary': a['summary']} 
-             for i, a in enumerate(articles_to_translate)],
-            ensure_ascii=False
+            # 翻訳実行
+            article['title_ja'] = translate_to_japanese(article['title'])
+            article['summary_ja'] = translate_to_japanese(article['summary'])
+            article['translated'] = True
+            print(" ✓")
+        
+        # カテゴリ分類
+        article['category'] = classify_category(
+            article['title_ja'], 
+            article['summary_ja'], 
+            article['category_hint']
         )
-        
-        try:
-            response = client.messages.create(
-                model="claude-opus-4-6",
-                max_tokens=2000,
-                messages=[{
-                    "role": "user",
-                    "content": f"""以下の記事をまとめて処理してください：
-
-【記事リスト】
-{articles_json}
-
-【タスク】
-各記事について：
-1. タイトルと要約を自然な日本語に翻訳
-2. 以下5カテゴリのいずれかに分類
-
-【カテゴリ】
-- 01_建築AI
-- 02_実務AI
-- 03_海外AI本流
-- 04_アートAI
-- 05_偶発ネタ
-
-JSON形式で返答：
-{{
-  "results": [
-    {{
-      "index": 0,
-      "title_ja": "日本語タイトル",
-      "summary_ja": "日本語要約",
-      "category": "該当カテゴリ",
-      "relevance": 0.5-1.0
-    }},
-    ...
-  ]
-}}"""
-                }]
-            )
-            
-            result_text = response.content[0].text.strip()
-            data = json.loads(result_text)
-            
-            for result in data.get('results', []):
-                idx = result['index']
-                articles_to_translate[idx]['title_ja'] = result['title_ja']
-                articles_to_translate[idx]['summary_ja'] = result['summary_ja']
-                articles_to_translate[idx]['category'] = result['category']
-                articles_to_translate[idx]['relevance'] = result['relevance']
-                articles_to_translate[idx]['translated'] = True
-                processed.append(articles_to_translate[idx])
-                print(f"✓ {articles_to_translate[idx]['source']}: 翻訳完了")
-        
-        except Exception as e:
-            print(f"⚠️  バッチ翻訳失敗: {e}")
-            for article in articles_to_translate:
-                article['title_ja'] = article['title']
-                article['summary_ja'] = article['summary']
-                article['category'] = article['category_hint']
-                article['relevance'] = 0.5
-                article['translated'] = False
-                processed.append(article)
+        article['relevance'] = 0.8 if article['translated'] else 0.7
+        processed.append(article)
     
     return processed
 
@@ -233,7 +196,7 @@ def generate_html_dashboard(articles):
     lines.extend([
         '    </div>',
         '    <div class="bg-gray-800 text-gray-400 text-center py-6 mt-12">',
-        '        <p class="text-sm">自動生成ニュースダッシュボード | RSS + Claude 翻訳・分類</p>',
+        '        <p class="text-sm">自動生成ニュースダッシュボード | RSS + Google Translate</p>',
         '        <p class="text-xs mt-1">毎日 09:00 JST に更新</p>',
         '    </div>',
         '</body>',
@@ -251,7 +214,7 @@ if __name__ == "__main__":
     print(f"✓ {len(articles)} 件の記事を取得\n")
     
     print("🔄 翻訳・分類処理中...")
-    processed = process_articles_batch(articles)
+    processed = process_articles(articles)
     print(f"\n✓ {len(processed)} 件を処理\n")
     
     print("📄 HTML ダッシュボード生成中...")
