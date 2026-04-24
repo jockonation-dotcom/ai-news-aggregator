@@ -2,7 +2,6 @@
 import feedparser
 import yaml
 import json
-import time
 from anthropic import Anthropic
 from datetime import datetime
 from langdetect import detect
@@ -41,15 +40,19 @@ def detect_language(text):
     except:
         return 'unknown'
 
-def process_articles(articles):
+def process_articles_batch(articles):
+    """バッチ処理：すべての記事を 1 回の API コールで処理"""
     client = Anthropic()
+    
+    print(f"🔄 翻訳・分類処理中（バッチ）...")
+    
+    # 英語記事のみをフィルタ
+    articles_to_translate = []
     processed = []
     
-    for i, article in enumerate(articles):
+    for article in articles:
         lang = detect_language(article['title'] + " " + article['summary'])
         article['original_language'] = lang
-        
-        print(f"[{i+1}/{len(articles)}] {article['source']}: {lang}", end='')
         
         if lang == 'ja':
             article['title_ja'] = article['title']
@@ -58,26 +61,34 @@ def process_articles(articles):
             article['category'] = article['category_hint']
             article['relevance'] = 0.8
             processed.append(article)
-            print(" ✓")
-            continue
+            print(f"✓ {article['source']}: ja（日本語）")
+        else:
+            articles_to_translate.append(article)
+            print(f"→ {article['source']}: {lang}（翻訳待機中）")
+    
+    # 英語記事をバッチで翻訳
+    if articles_to_translate:
+        articles_json = json.dumps(
+            [{'index': i, 'title': a['title'], 'summary': a['summary']} 
+             for i, a in enumerate(articles_to_translate)],
+            ensure_ascii=False
+        )
         
         try:
             response = client.messages.create(
                 model="claude-opus-4-6",
-                max_tokens=500,
+                max_tokens=2000,
                 messages=[{
                     "role": "user",
-                    "content": f"""記事を処理してください：
+                    "content": f"""以下の記事をまとめて処理してください：
 
-【元タイトル】
-{article['title']}
-
-【元要約】
-{article['summary']}
+【記事リスト】
+{articles_json}
 
 【タスク】
+各記事について：
 1. タイトルと要約を自然な日本語に翻訳
-2. 以下5カテゴリのいずれかに分類（ヒント: {article['category_hint']}）
+2. 以下5カテゴリのいずれかに分類
 
 【カテゴリ】
 - 01_建築AI
@@ -86,35 +97,44 @@ def process_articles(articles):
 - 04_アートAI
 - 05_偶発ネタ
 
-JSON形式で返答してください（マークダウンなし、JSONのみ）：
+JSON形式で返答：
 {{
-  "title_ja": "日本語タイトル",
-  "summary_ja": "日本語要約（200字程度）",
-  "category": "該当カテゴリ",
-  "relevance": 0.0-1.0
+  "results": [
+    {{
+      "index": 0,
+      "title_ja": "日本語タイトル",
+      "summary_ja": "日本語要約",
+      "category": "該当カテゴリ",
+      "relevance": 0.5-1.0
+    }},
+    ...
+  ]
 }}"""
                 }]
             )
             
             result_text = response.content[0].text.strip()
-            result = json.loads(result_text)
+            data = json.loads(result_text)
             
-            article['title_ja'] = result['title_ja']
-            article['summary_ja'] = result['summary_ja']
-            article['category'] = result['category']
-            article['relevance'] = result['relevance']
-            article['translated'] = True
-            processed.append(article)
-            print(" ✓")
-            time.sleep(30)
+            for result in data.get('results', []):
+                idx = result['index']
+                articles_to_translate[idx]['title_ja'] = result['title_ja']
+                articles_to_translate[idx]['summary_ja'] = result['summary_ja']
+                articles_to_translate[idx]['category'] = result['category']
+                articles_to_translate[idx]['relevance'] = result['relevance']
+                articles_to_translate[idx]['translated'] = True
+                processed.append(articles_to_translate[idx])
+                print(f"✓ {articles_to_translate[idx]['source']}: 翻訳完了")
+        
         except Exception as e:
-            print(f" ✗ ({e})")
-            article['title_ja'] = article['title']
-            article['summary_ja'] = article['summary']
-            article['category'] = article['category_hint']
-            article['relevance'] = 0.5
-            article['translated'] = False
-            processed.append(article)
+            print(f"⚠️  バッチ翻訳失敗: {e}")
+            for article in articles_to_translate:
+                article['title_ja'] = article['title']
+                article['summary_ja'] = article['summary']
+                article['category'] = article['category_hint']
+                article['relevance'] = 0.5
+                article['translated'] = False
+                processed.append(article)
     
     return processed
 
@@ -231,7 +251,7 @@ if __name__ == "__main__":
     print(f"✓ {len(articles)} 件の記事を取得\n")
     
     print("🔄 翻訳・分類処理中...")
-    processed = process_articles(articles)
+    processed = process_articles_batch(articles)
     print(f"\n✓ {len(processed)} 件を処理\n")
     
     print("📄 HTML ダッシュボード生成中...")
