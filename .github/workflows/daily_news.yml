@@ -24,6 +24,7 @@ jobs:
       - name: Run news aggregator
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
+          GOOGLE_TRANSLATE_API_KEY: ${{ secrets.GOOGLE_TRANSLATE_API_KEY }}
         run: python news_aggregator.py
       
       - name: Check if HTML exists
