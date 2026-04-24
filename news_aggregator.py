@@ -2,6 +2,7 @@
 import feedparser
 import yaml
 import json
+import time
 from anthropic import Anthropic
 from datetime import datetime
 from langdetect import detect
@@ -52,7 +53,6 @@ def process_articles(articles):
     """翻訳 + カテゴリ分類を同時実行"""
     client = Anthropic()
     processed = []
-    import time
     
     for i, article in enumerate(articles):
         lang = detect_language(article['title'] + " " + article['summary'])
@@ -117,7 +117,7 @@ JSON形式で返答してください（マークダウンなし、JSONのみ）
             article['translated'] = True
             processed.append(article)
             print(" ✓")
-           time.sleep(5)  # ← 5秒に増やす
+            time.sleep(5)  # ← リクエスト間隔
             
         except Exception as e:
             print(f" ✗ ({e})")
