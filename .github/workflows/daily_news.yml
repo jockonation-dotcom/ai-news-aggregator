@@ -11,39 +11,23 @@ jobs:
     
     steps:
       - uses: actions/checkout@v4
-        with:
-          token: ${{ secrets.GITHUB_TOKEN }}
       
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11'
       
       - name: Install dependencies
-        run: |
-          pip install feedparser pyyaml anthropic langdetect
+        run: pip install feedparser pyyaml anthropic langdetect
       
       - name: Run news aggregator
         env:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python news_aggregator.py
       
-      - name: Push changes
-        uses: actions/github-script@v7
-        with:
-          script: |
-            const fs = require('fs');
-            const path = require('path');
-            
-            const htmlPath = 'docs/news_dashboard.html';
-            if (fs.existsSync(htmlPath)) {
-              const { execSync } = require('child_process');
-              execSync('git config user.name "News Bot"');
-              execSync('git config user.email "bot@example.com"');
-              execSync('git add docs/news_dashboard.html');
-              try {
-                execSync('git commit -m "chore: update dashboard"');
-                execSync('git push');
-              } catch (e) {
-                console.log('No changes to commit');
-              }
-            }
+      - name: Commit and push
+        run: |
+          git config --global user.name "News Bot"
+          git config --global user.email "bot@example.com"
+          git add docs/news_dashboard.html || true
+          git commit -m "chore: update dashboard" || true
+          git push || true
