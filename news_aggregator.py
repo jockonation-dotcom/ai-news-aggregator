@@ -21,7 +21,7 @@ def fetch_rss_feeds(rss_sources):
         for source_name, rss_url in sources.items():
             try:
                 feed = feedparser.parse(rss_url)
-                for entry in feed.entries[:1]:
+                for entry in feed.entries[:3]:
                     articles.append({
                         'category_hint': category,
                         'source': source_name,
