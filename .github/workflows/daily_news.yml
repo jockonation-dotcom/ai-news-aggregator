@@ -29,10 +29,10 @@ jobs:
           ANTHROPIC_API_KEY: ${{ secrets.ANTHROPIC_API_KEY }}
         run: python news_aggregator.py
       
-      - name: Commit and push
-        run: |
-          git config user.name "News Bot"
-          git config user.email "bot@example.com"
-          git add docs/news_dashboard.html
-          git commit -m "chore: update news dashboard $(date '+%Y-%m-%d %H:%M')" || echo "No changes"
-          git push
+- name: Commit and push
+  run: |
+    git config user.name "News Bot"
+    git config user.email "bot@example.com"
+    git add docs/news_dashboard.html
+    git commit -m "chore: update news dashboard $(date '+%Y-%m-%d %H:%M')" || echo "No changes to commit"
+    git push https://x-access-token:${{ secrets.GITHUB_TOKEN }}@github.com/${{ github.repository }}.git HEAD:${{ github.ref }} || echo "Push failed or no changes"
