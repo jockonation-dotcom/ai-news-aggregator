@@ -52,6 +52,7 @@ def process_articles(articles):
     """翻訳 + カテゴリ分類を同時実行"""
     client = Anthropic()
     processed = []
+    import time
     
     for i, article in enumerate(articles):
         lang = detect_language(article['title'] + " " + article['summary'])
@@ -116,6 +117,7 @@ JSON形式で返答してください（マークダウンなし、JSONのみ）
             article['translated'] = True
             processed.append(article)
             print(" ✓")
+            time.sleep(2)  # ← 2秒の遅延
             
         except Exception as e:
             print(f" ✗ ({e})")
