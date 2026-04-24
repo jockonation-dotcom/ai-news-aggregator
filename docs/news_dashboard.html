@@ -1,0 +1,314 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI ニュース統合ダッシュボード</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body { font-family: 'Yu Gothic', 'Hiragino Sans', sans-serif; }
+        .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
+        .badge-translated { @apply inline-block bg-green-500 text-white text-xs px-2 py-1 rounded; }
+    </style>
+</head>
+<body class="bg-gray-50">
+    <!-- ヘッダー -->
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-8 px-4 sticky top-0 z-10 shadow-lg">
+        <div class="max-w-6xl mx-auto">
+            <h1 class="text-3xl md:text-4xl font-bold">🤖 AI ニュース統合ダッシュボード</h1>
+            <p class="text-indigo-100 mt-2">建築AI × 実務AI × 海外AI本流 × アートAI</p>
+            <p class="text-sm text-indigo-200 mt-1">最終更新: 2026年04月24日 08:51</p>
+        </div>
+    </div>
+
+    <!-- メインコンテンツ -->
+    <div class="max-w-6xl mx-auto px-4 py-8">
+
+        <!-- 03_海外AI本流 セクション -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-indigo-600 pl-4 mb-6">
+                03_海外AI本流
+                <span class="text-sm text-gray-500 font-normal">(6件)</span>
+            </h2>
+            
+            <div class="grid gap-4">
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                OpenAIの新モデルGPT-5.5がNVIDIAインフラ上でCodexを強化 — NVIDIAも早速活用開始
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Nvidia_Blog</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Thu, 23 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">AIエージェントは開発者のワークフローを一変させ、次なるフロンティアとして情報処理、複雑な問題解決、新たなアイデア創出といったナレッジワークへと進出している。OpenAIのエージェント型コーディングアプリケーション「Codex」は、最新モデルGPT-5.5を搭載し、NVIDIAのインフラストラクチャ上で稼働。NVIDIAもすでにこの技術を自社業務に導入し、AIによるイノベーション推進の新たな段階を切り開いている。</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 95%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://blogs.nvidia.com/blog/geforce-now-thursday-in-app-labels/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Tag, You’re It: GeForce NOW Levels Up Game Discovery With Xbox Game Pass and Ubisoft+ Labels
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Nvidia_Blog</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Thu, 23 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">GeForce NOW is doubling down on what matters most: gamers. This week’s upgrades bring smarter libraries, making it easier than ever for gamers to turn a PC collection into a cloud-powered flex. It starts with giving existing libraries time to shine. Gamers can bring the games they love to the cloud,</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://blogs.nvidia.com/blog/ai-gpu-early-universe-astronomy/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Making Sense of the Early Universe
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Nvidia_Blog</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Thu, 23 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">This Spring Astronomy Day, here’s a look at how AI and GPUs are helping astronomers work through unprecedented volumes of cosmic data.</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://aws.amazon.com/blogs/machine-learning/amazon-quick-for-marketing-from-scattered-data-to-strategic-action/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Amazon Quick for marketing: From scattered data to strategic action
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">AWS_ML</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Thu, 23 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">Amazon Quick changes how you work. You can set it up in minutes and by the end of the day, you will wonder how you ever worked without it. Quick connects with your applications, tools, and data, creating a personal knowledge graph that learns your priorities, preferences, and network.</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://aws.amazon.com/blogs/machine-learning/applying-multimodal-biological-foundation-models-across-therapeutics-and-patient-care/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Applying multimodal biological foundation models across therapeutics and patient care
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">AWS_ML</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Thu, 23 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">In this post, we'll explore how multimodal BioFMs work, showcase real-world applications in drug discovery and clinical development, and contextualize how AWS enables organizations to build and deploy multimodal BioFMs.</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://aws.amazon.com/blogs/machine-learning/cost-effective-multilingual-audio-transcription-at-scale-with-parakeet-tdt-and-aws-batch/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Cost-effective multilingual audio transcription at scale with Parakeet-TDT and AWS Batch
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">AWS_ML</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Wed, 22 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">In this post, we walk through building a scalable, event-driven transcription pipeline that automatically processes audio files uploaded to Amazon Simple Storage Service (Amazon S3), and show you how to use Amazon EC2 Spot Instances and buffered streaming inference to further reduce costs.</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+            </div>
+        </div>
+
+        <!-- 05_偶発ネタ セクション -->
+        <div class="mb-12">
+            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-indigo-600 pl-4 mb-6">
+                05_偶発ネタ
+                <span class="text-sm text-gray-500 font-normal">(6件)</span>
+            </h2>
+            
+            <div class="grid gap-4">
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://arxiv.org/abs/2604.20862" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Architecture of an AI-Based Automated Course of Action Generation System for Military Operations
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">arXiv_AI</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Fri, 24 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">arXiv:2604.20862v1 Announce Type: new 
+Abstract: The automation system for Course of Action (CoA) planning is an essential element in future warfare. As maneuver speeds increase, surveillance ranges extend, and weapon ranges grow, the operational area expands, making traditional manned-based CoA pla</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://arxiv.org/abs/2604.20972" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Escaping the Agreement Trap: Defensibility Signals for Evaluating Rule-Governed AI
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">arXiv_AI</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Fri, 24 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">arXiv:2604.20972v1 Announce Type: new 
+Abstract: Content moderation systems are typically evaluated by measuring agreement with human labels. In rule-governed environments this assumption fails: multiple decisions may be logically consistent with the governing policy, and agreement metrics penalize </p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://arxiv.org/abs/2604.20987" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Co-Evolving LLM Decision and Skill Bank Agents for Long-Horizon Tasks
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">arXiv_AI</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Fri, 24 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">arXiv:2604.20987v1 Announce Type: new 
+Abstract: Long horizon interactive environments are a testbed for evaluating agents skill usage abilities. These environments demand multi step reasoning, the chaining of multiple skills over many timesteps, and robust decision making under delayed rewards and </p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://www.wired.com/story/sams-club-coupon/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Sam's Club Promo Codes: 60% Off for April 2026
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Wired_Tech</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Fri, 24 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">Save on bulk groceries, household essentials, and electronics with a verified Sam's Club promo code or membership discount.</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://www.wired.com/story/target-promo-code/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Target Promo Code: $50 Off | April 2026
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Wired_Tech</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Fri, 24 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">Get $50 off your next order or up to 50% off site wide with Target coupon codes and Circle deals.</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://www.wired.com/story/exclusive-kitchenaid-promo-code/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                KitchenAid Promo Codes: Save Up to 20%
+                            </a>
+                        </div>
+                        
+                    </div>
+                    
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Wired_Tech</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Fri, 24 Ap</span>
+                    </div>
+                    
+                    <p class="text-gray-700 leading-relaxed mb-2">Save on every purchase with top KitchenAid coupons from WIRED, including up to 20% off countertop appliances.</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 50%</div>
+                </div>
+
+            </div>
+        </div>
+
+    </div>
+
+    <!-- フッター -->
+    <div class="bg-gray-800 text-gray-400 text-center py-6 mt-12">
+        <p class="text-sm">自動生成ニュースダッシュボード | RSS + Claude 翻訳・分類</p>
+        <p class="text-xs mt-1">毎日 09:00 JST に更新</p>
+    </div>
+</body>
+</html>
