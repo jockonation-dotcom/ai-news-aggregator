@@ -63,7 +63,7 @@ def process_articles(articles):
         
         try:
             response = client.messages.create(
-                model="claude-haiku-4-5-20251001",
+                model="claude-opus-4-6",
                 max_tokens=500,
                 messages=[{
                     "role": "user",
@@ -106,7 +106,7 @@ JSON形式で返答してください（マークダウンなし、JSONのみ）
             article['translated'] = True
             processed.append(article)
             print(" ✓")
-            time.sleep(8)
+            time.sleep(3)
         except Exception as e:
             print(f" ✗ ({e})")
             article['title_ja'] = article['title']
