@@ -19,7 +19,7 @@ jobs:
           python-version: '3.11'
       
       - name: Install dependencies
-        run: pip install feedparser pyyaml anthropic langdetect
+        run: pip install -r requirements.txt
       
       - name: Run news aggregator
         env:
