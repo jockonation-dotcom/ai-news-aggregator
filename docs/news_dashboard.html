@@ -9,23 +9,67 @@
         body { font-family: 'Yu Gothic', 'Hiragino Sans', sans-serif; }
         .card-hover:hover { transform: translateY(-2px); box-shadow: 0 10px 20px rgba(0,0,0,0.1); }
         .badge-translated { display: inline-block; background: #22c55e; color: white; font-size: 0.75rem; padding: 2px 6px; border-radius: 3px; }
+        .tab-button { transition: all 0.3s ease; }
+        .tab-button.active { color: #4f46e5; border-bottom-color: #4f46e5; }
+        .tab-content { display: none; }
+        .tab-content.active { display: block; }
     </style>
 </head>
 <body class="bg-gray-50">
-    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-8 px-4 sticky top-0 z-10 shadow-lg">
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-8 px-4 sticky top-0 z-20 shadow-lg">
         <div class="max-w-6xl mx-auto">
             <h1 class="text-3xl md:text-4xl font-bold">🤖 AI ニュース統合ダッシュボード</h1>
-            <p class="text-indigo-100 mt-2">建築AI × 実務AI × 海外AI本流 × アートAI</p>
-            <p class="text-sm text-indigo-200 mt-1">最終更新: 2026年04月24日 12:06</p>
+            <p class="text-indigo-100 mt-2">建築AI × 実務AI × 海外AI本流 × アートAI × 偶発ネタ</p>
+            <p class="text-sm text-indigo-200 mt-1">最終更新: 2026年04月24日 12:13</p>
         </div>
     </div>
+
+
+    <div class="sticky top-20 bg-white border-b border-gray-200 z-9">
+        <div class="max-w-6xl mx-auto px-4">
+            <div class="flex gap-2 overflow-x-auto">
+                <button onclick="showTab('all')" class="tab-button active px-4 py-3 font-semibold text-indigo-600 border-b-2 border-indigo-600 whitespace-nowrap">
+                    ALL
+                </button>
+                <button onclick="showTab('01_建築AI')" class="tab-button px-4 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:text-indigo-600 whitespace-nowrap">
+                    建築AI
+                </button>
+                <button onclick="showTab('02_実務AI')" class="tab-button px-4 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:text-indigo-600 whitespace-nowrap">
+                    実務AI
+                </button>
+                <button onclick="showTab('03_海外AI本流')" class="tab-button px-4 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:text-indigo-600 whitespace-nowrap">
+                    海外AI本流
+                </button>
+                <button onclick="showTab('04_アートAI')" class="tab-button px-4 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:text-indigo-600 whitespace-nowrap">
+                    アートAI
+                </button>
+                <button onclick="showTab('05_偶発ネタ')" class="tab-button px-4 py-3 font-semibold text-gray-600 border-b-2 border-transparent hover:text-indigo-600 whitespace-nowrap">
+                    偶発ネタ
+                </button>
+            </div>
+        </div>
+    </div>
+
+
     <div class="max-w-6xl mx-auto px-4 py-8">
-        <div class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-indigo-600 pl-4 mb-6">
-                03_海外AI本流
-                <span class="text-sm text-gray-500 font-normal">(2件)</span>
-            </h2>
-            <div class="grid gap-4">
+        <div id="all" class="tab-content">            <h2 class="text-2xl font-bold text-gray-800 pl-4 mb-6 mt-8">最新記事（全8件）</h2>            <div class="grid gap-4">                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://blogs.microsoft.com/ai/a-conversation-with-kevin-scott-whats-next-in-ai/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                ケビン・スコットとの対談：AIの未来とは？
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="inline-block bg-gray-100 px-2 py-1 rounded mr-2">03_海外AI本流</span>
+                        <span class="font-semibold">Microsoft_AI</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Tue, 06 De</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">&lt;p&gt;この記事&lt;a href=&quot;https://blogs.microsoft.com/ai/a-conversation-with-kevin-scott-whats-next-in-ai/&quot;&gt;「ケビン・スコットとの対話：AIの未来とは」は、&lt;/a&gt; &lt;a href=&quot;https://blogs.microsoft.com/ai&quot;&gt;The AI Blog&lt;/a&gt;に最初に掲載されました。&lt;/p&gt;</p>
+                </div>
                 <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
                         <div class="flex-1">
@@ -36,12 +80,160 @@
                         <span class="badge-translated">翻訳</span>
                     </div>
                     <div class="text-xs text-gray-600 mb-3">
-                        <span class="font-semibold">Nvidia_Blog</span>
+                        <span class="inline-block bg-gray-100 px-2 py-1 rounded mr-2">03_海外AI本流</span>
+                        <span class="font-semibold">Nvidia</span>
                          <span class="text-xs text-gray-500">(en)</span>
                         <span class="mx-1">·</span>
                         <span>Thu, 23 Ap</span>
                     </div>
                     <p class="text-gray-700 leading-relaxed mb-2">AIエージェントは開発者のワークフローに革命をもたらし、その次のフロンティアは知識労働、つまり情報の処理、複雑な問題の解決、新しいアイデアの創出、イノベーションの推進です。OpenAIのエージェント型コーディングアプリケーションであるCodexは、この新しいフロンティアを実現しています。現在、GPT-5.5、Op</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://aws.amazon.com/blogs/machine-learning/amazon-quick-for-marketing-from-scattered-data-to-strategic-action/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                Amazon Quick for marketing：散在するデータから戦略的なアクションへ
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="inline-block bg-gray-100 px-2 py-1 rounded mr-2">03_海外AI本流</span>
+                        <span class="font-semibold">AWS_ML</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Thu, 23 Ap</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">Amazon Quickは、あなたの働き方を変革します。数分でセットアップでき、一日が終わる頃には、これなしでどうやって仕事をしていたのか不思議に思うでしょう。Quickは、アプリケーション、ツール、データと連携し、あなたの優先順位、好み、ネットワークを学習するパーソナルナレッジグラフを作成します。</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://www.archdaily.com/1040704/hotel-de-la-paix-an-alternative-approach-to-modern-heritage-in-togo" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                平和のホテル：トーゴにおける現代遺産への新たなアプローチ
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="inline-block bg-gray-100 px-2 py-1 rounded mr-2">05_偶発ネタ</span>
+                        <span class="font-semibold">ArchDaily</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Fri, 24 Ap</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">&lt;p&gt;2024年後半、首都&lt;a href=&quot;https://www.archdaily.com/934791/palace-in-lome-exhibition-space-and-workshops-segond-guyon-architectes&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;ロメにある最近改装された植民地時代の宮殿&lt;/a&gt;の敷地内でイベントが開催された。</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://arxiv.org/abs/2604.20862" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                軍事作戦のためのAIベースの自動行動計画生成システムのアーキテクチャ
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="inline-block bg-gray-100 px-2 py-1 rounded mr-2">05_偶発ネタ</span>
+                        <span class="font-semibold">arXiv_AI</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Fri, 24 Ap</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">arXiv:2604.20862v1 発表タイプ: 新規 概要: 行動方針 (CoA) 計画のための自動化システムは、将来の戦争において不可欠な要素である。機動速度の向上、監視範囲の拡大、兵器の射程距離の拡大に伴い、作戦領域が拡大し、従来の有人ベースの CoA 計画は、</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://www.producthunt.com/products/spira-ai" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                スピラAI
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="inline-block bg-gray-100 px-2 py-1 rounded mr-2">05_偶発ネタ</span>
+                        <span class="font-semibold">Product_Hunt_AI</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>2026-04-23</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">&lt;p&gt;常にトレンドを把握し、ブランドを創造・成長させるAIインフルエンサー&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.producthunt.com/products/spira-ai?utm_campaign=producthunt-atom-posts-feed&amp;amp;utm_medium=rss-feed&amp;amp;utm_source=producthunt-atom-posts-feed&quot;&gt;議論&lt;/a&gt;
+   </p>
+                </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://www.publickey1.jp/blog/26/google_cloudrdbspanner_omni.html" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                ［速報］Google Cloud、ローカルマシンにインストールできる大規模分散RDB「Spanner Omni」プレビュー公開
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="inline-block bg-gray-100 px-2 py-1 rounded mr-2">05_偶発ネタ</span>
+                        <span class="font-semibold">Publickey</span>
+                        
+                        <span class="mx-1">·</span>
+                        <span>2026-04-22</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">Googleは、日本時間で4月23日未明にラスベガスで開幕したイベント「Google Cloud Next 2026」で、ローカルマシンにインストールできる大規模分散リレーショナルデータベース「Spanner Omni」のプレビュー版を公開...</p>
+                </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://blog.adobe.com/en/publish/2022/07/01/great-moments-in-document-history-reimagining-the-declaration-of-independence-as-pdf" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                文書史に残る名場面：独立宣言をPDFとして再構築する
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="inline-block bg-gray-100 px-2 py-1 rounded mr-2">05_偶発ネタ</span>
+                        <span class="font-semibold">Adobe_Firefly</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>N/A</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">独立宣言が批准されるまでに、手書きの文書には100近くの修正が加えられていた。PDFがあればよかったのに。</p>
+                </div>
+            </div>
+        </div>
+
+        <div id="03_海外AI本流" class="tab-content hidden">            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-indigo-600 pl-4 mb-6 mt-8">                03_海外AI本流                <span class="text-sm text-gray-500 font-normal">(3件)</span>            </h2>            <div class="grid gap-4">                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://blogs.nvidia.com/blog/openai-codex-gpt-5-5-ai-agents/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                OpenAIの新しいGPT-5.5がNVIDIAインフラストラクチャ上のCodexを支え、NVIDIAは既にそれを活用している。
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Nvidia</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Thu, 23 Ap</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">AIエージェントは開発者のワークフローに革命をもたらし、その次のフロンティアは知識労働、つまり情報の処理、複雑な問題の解決、新しいアイデアの創出、イノベーションの推進です。OpenAIのエージェント型コーディングアプリケーションであるCodexは、この新しいフロンティアを実現しています。現在、GPT-5.5、Op</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 80%</div>
+                </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://blogs.microsoft.com/ai/a-conversation-with-kevin-scott-whats-next-in-ai/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                ケビン・スコットとの対談：AIの未来とは？
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Microsoft_AI</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>Tue, 06 De</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">&lt;p&gt;この記事&lt;a href=&quot;https://blogs.microsoft.com/ai/a-conversation-with-kevin-scott-whats-next-in-ai/&quot;&gt;「ケビン・スコットとの対話：AIの未来とは」は、&lt;/a&gt; &lt;a href=&quot;https://blogs.microsoft.com/ai&quot;&gt;The AI Blog&lt;/a&gt;に最初に掲載されました。&lt;/p&gt;</p>
                     <div class="text-xs text-gray-500 mt-2">関連度: 80%</div>
                 </div>
                 <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
@@ -64,38 +256,61 @@
                 </div>
             </div>
         </div>
-        <div class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-indigo-600 pl-4 mb-6">
-                04_アートAI
-                <span class="text-sm text-gray-500 font-normal">(1件)</span>
-            </h2>
-            <div class="grid gap-4">
-                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+        <div id="05_偶発ネタ" class="tab-content hidden">            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-indigo-600 pl-4 mb-6 mt-8">                05_偶発ネタ                <span class="text-sm text-gray-500 font-normal">(5件)</span>            </h2>            <div class="grid gap-4">                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
                         <div class="flex-1">
-                            <a href="https://www.wired.com/review/dyson-pencilvac-review/" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
-                                ダイソン ペンシルバキューム レビュー (2026): 機能は限られているが便利
+                            <a href="https://www.archdaily.com/1040704/hotel-de-la-paix-an-alternative-approach-to-modern-heritage-in-togo" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                平和のホテル：トーゴにおける現代遺産への新たなアプローチ
                             </a>
                         </div>
                         <span class="badge-translated">翻訳</span>
                     </div>
                     <div class="text-xs text-gray-600 mb-3">
-                        <span class="font-semibold">Wired_Tech</span>
+                        <span class="font-semibold">ArchDaily</span>
                          <span class="text-xs text-gray-500">(en)</span>
                         <span class="mx-1">·</span>
                         <span>Fri, 24 Ap</span>
                     </div>
-                    <p class="text-gray-700 leading-relaxed mb-2">ダイソンの最新スティック掃除機は、斬新で洗練されたデザインだが、いくつか欠点もある。それでも、私はついつい手が伸びてしまう。</p>
+                    <p class="text-gray-700 leading-relaxed mb-2">&lt;p&gt;2024年後半、首都&lt;a href=&quot;https://www.archdaily.com/934791/palace-in-lome-exhibition-space-and-workshops-segond-guyon-architectes&quot; rel=&quot;noopener&quot; target=&quot;_blank&quot;&gt;ロメにある最近改装された植民地時代の宮殿&lt;/a&gt;の敷地内でイベントが開催された。</p>
                     <div class="text-xs text-gray-500 mt-2">関連度: 80%</div>
                 </div>
-            </div>
-        </div>
-        <div class="mb-12">
-            <h2 class="text-2xl font-bold text-gray-800 border-l-4 border-indigo-600 pl-4 mb-6">
-                05_偶発ネタ
-                <span class="text-sm text-gray-500 font-normal">(1件)</span>
-            </h2>
-            <div class="grid gap-4">
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://blog.adobe.com/en/publish/2022/07/01/great-moments-in-document-history-reimagining-the-declaration-of-independence-as-pdf" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                文書史に残る名場面：独立宣言をPDFとして再構築する
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Adobe_Firefly</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>N/A</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">独立宣言が批准されるまでに、手書きの文書には100近くの修正が加えられていた。PDFがあればよかったのに。</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 80%</div>
+                </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://www.producthunt.com/products/spira-ai" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                スピラAI
+                            </a>
+                        </div>
+                        <span class="badge-translated">翻訳</span>
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Product_Hunt_AI</span>
+                         <span class="text-xs text-gray-500">(en)</span>
+                        <span class="mx-1">·</span>
+                        <span>2026-04-23</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">&lt;p&gt;常にトレンドを把握し、ブランドを創造・成長させるAIインフルエンサー&lt;/p&gt;&lt;p&gt;&lt;a href=&quot;https://www.producthunt.com/products/spira-ai?utm_campaign=producthunt-atom-posts-feed&amp;amp;utm_medium=rss-feed&amp;amp;utm_source=producthunt-atom-posts-feed&quot;&gt;議論&lt;/a&gt;
+   </p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 80%</div>
+                </div>
                 <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
                     <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
                         <div class="flex-1">
@@ -114,12 +329,60 @@
                     <p class="text-gray-700 leading-relaxed mb-2">arXiv:2604.20862v1 発表タイプ: 新規 概要: 行動方針 (CoA) 計画のための自動化システムは、将来の戦争において不可欠な要素である。機動速度の向上、監視範囲の拡大、兵器の射程距離の拡大に伴い、作戦領域が拡大し、従来の有人ベースの CoA 計画は、</p>
                     <div class="text-xs text-gray-500 mt-2">関連度: 80%</div>
                 </div>
+                <div class="bg-white rounded-lg p-4 md:p-6 border border-gray-200 card-hover transition-all duration-200">
+                    <div class="flex flex-col md:flex-row md:justify-between md:items-start gap-2 mb-3">
+                        <div class="flex-1">
+                            <a href="https://www.publickey1.jp/blog/26/google_cloudrdbspanner_omni.html" target="_blank" class="text-lg font-semibold text-indigo-600 hover:text-indigo-800 hover:underline block">
+                                ［速報］Google Cloud、ローカルマシンにインストールできる大規模分散RDB「Spanner Omni」プレビュー公開
+                            </a>
+                        </div>
+                        
+                    </div>
+                    <div class="text-xs text-gray-600 mb-3">
+                        <span class="font-semibold">Publickey</span>
+                        
+                        <span class="mx-1">·</span>
+                        <span>2026-04-22</span>
+                    </div>
+                    <p class="text-gray-700 leading-relaxed mb-2">Googleは、日本時間で4月23日未明にラスベガスで開幕したイベント「Google Cloud Next 2026」で、ローカルマシンにインストールできる大規模分散リレーショナルデータベース「Spanner Omni」のプレビュー版を公開...</p>
+                    <div class="text-xs text-gray-500 mt-2">関連度: 70%</div>
+                </div>
             </div>
         </div>
+
     </div>
+
     <div class="bg-gray-800 text-gray-400 text-center py-6 mt-12">
         <p class="text-sm">自動生成ニュースダッシュボード | RSS + Google Translate</p>
         <p class="text-xs mt-1">毎日 09:00 JST に更新</p>
     </div>
+
+    <script>
+        function showTab(tabName) {
+            // すべてのタブを非表示
+            document.querySelectorAll('.tab-content').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // すべてのボタンを非アクティブに
+            document.querySelectorAll('.tab-button').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // 選択されたタブを表示
+            const selectedTab = document.getElementById(tabName);
+            if (selectedTab) {
+                selectedTab.classList.add('active');
+            }
+            
+            // 選択されたボタンをアクティブに
+            event.target.classList.add('active');
+        }
+        
+        // ページロード時に ALL タブを表示
+        document.addEventListener('DOMContentLoaded', function() {
+            document.getElementById('all').classList.add('active');
+        });
+    </script>
 </body>
 </html>
