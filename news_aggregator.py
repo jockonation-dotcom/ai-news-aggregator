@@ -3,9 +3,9 @@ import feedparser
 import yaml
 import json
 import os
+import requests
 from datetime import datetime
 from langdetect import detect
-from google.cloud import translate_v2
 
 YAML_FILE = "rss_sources.yaml"
 OUTPUT_FILE = "docs/news_dashboard.html"
@@ -41,12 +41,24 @@ def detect_language(text):
         return 'unknown'
 
 def translate_to_japanese(text):
-    """Google Translate API を使用して日本語に翻訳"""
+    """Google Translate API REST を使用して日本語に翻訳"""
     try:
         api_key = os.environ.get('GOOGLE_TRANSLATE_API_KEY')
-        client = translate_v2.Client(api_key=api_key)
-        result = client.translate_text(text, target_language='ja')
-        return result['translatedText']
+        url = "https://translation.googleapis.com/language/translate/v2"
+        
+        params = {
+            'key': api_key,
+            'q': text,
+            'target': 'ja'
+        }
+        
+        response = requests.post(url, data=params)
+        result = response.json()
+        
+        if 'data' in result and 'translations' in result['data']:
+            return result['data']['translations'][0]['translatedText']
+        else:
+            return text
     except Exception as e:
         print(f"翻訳エラー: {e}")
         return text
