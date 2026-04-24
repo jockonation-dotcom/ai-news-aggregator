@@ -106,7 +106,7 @@ JSON形式で返答してください（マークダウンなし、JSONのみ）
             article['translated'] = True
             processed.append(article)
             print(" ✓")
-            time.sleep(15)
+            time.sleep(30)
         except Exception as e:
             print(f" ✗ ({e})")
             article['title_ja'] = article['title']
