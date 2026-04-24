@@ -1,32 +1,22 @@
 sources:
   01_建築AI:
-    Autodesk: https://blog.autodesk.com/feed/
     ArchDaily: https://www.archdaily.com/feed
-    Construction_Dive: https://www.constructiondive.com/news/feed/
-    Trimble: https://blog.trimble.com/feed/
-    建設ITワールド: https://itworld.nikkeibp.co.jp/buildit/feed/rss.xml
+    ArchitectureWeek: https://feeds.architecture.com/
   02_実務AI:
-    ITmedia: https://www.itmedia.co.jp/feed/rss20_ai.xml
-    日経クロステック: https://xtech.nikkei.com/atcl/nxt/rss/18/00001/feed.xml
     Publickey: http://www.publickey1.jp/atom.xml
-    CodeZine: https://codezine.jp/feed
-    ZDNet_Japan: https://japan.zdnet.com/feed/
+    ITmedia: https://www.itmedia.co.jp/feed/rss20_ai.xml
   03_海外AI本流:
     OpenAI: https://openai.com/blog/feed.xml
     Anthropic: https://www.anthropic.com/news/feed.rss
     DeepMind: https://deepmind.google/feed/
     Nvidia: https://blogs.nvidia.com/feed/
     Microsoft_AI: https://blogs.microsoft.com/ai/feed/
-    Meta_AI: https://ai.meta.com/feed/
     AWS_ML: https://aws.amazon.com/blogs/machine-learning/feed/
   04_アートAI:
-    Runway: https://runwayml.com/blog/feed.xml
-    Stability: https://stability.ai/blog/feed.xml
     Hugging_Face: https://huggingface.co/feed.xml
     Adobe_Firefly: https://blog.adobe.com/feed/
-    Suno: https://suno.com/blog/feed.xml
   05_偶発ネタ:
-    Product_Hunt_AI: https://www.producthunt.com/feed
-    MIT_Tech_Review: https://www.technologyreview.com/feed/artificial-intelligence/
-    Wired_Tech: https://www.wired.com/feed/rss.xml
+    Product_Hunt: https://www.producthunt.com/feed
+    MIT_TechReview: https://www.technologyreview.com/feed/artificial-intelligence/
     arXiv_AI: https://arxiv.org/rss/cs.AI
+    Publickey: http://www.publickey1.jp/atom.xml
