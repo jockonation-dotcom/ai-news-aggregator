@@ -73,8 +73,8 @@ def process_articles(articles):
         
         # 英語など：翻訳 + 分類を同時実行
         try:
-            response = client.messages.create(
-                model="claude-opus-4-6",
+response = client.messages.create(
+    model="claude-haiku-4-5-20251001",
                 max_tokens=500,
                 messages=[{
                     "role": "user",
