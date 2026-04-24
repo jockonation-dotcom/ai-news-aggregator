@@ -117,7 +117,7 @@ JSON形式で返答してください（マークダウンなし、JSONのみ）
             article['translated'] = True
             processed.append(article)
             print(" ✓")
-            time.sleep(5)  # ← リクエスト間隔
+            time.sleep(10)  # ← リクエスト間隔
             
         except Exception as e:
             print(f" ✗ ({e})")
